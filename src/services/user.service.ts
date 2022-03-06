@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Param } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { User } from "src/models/user.model";
 
@@ -9,6 +9,15 @@ export class UserService{
         @InjectModel(User)
         private userModel: typeof User
     ){ }
+
+    async getUser(username: string): Promise<User>{
+        return this.userModel.findOne({
+            where: {
+                username: username
+            },
+            raw: true,
+        })
+    }
 
     async createUser(body: User) {
         this.userModel.create(body);
