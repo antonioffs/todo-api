@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
+import { APP_FILTER } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
+import { FilterExceptions } from './common/filter/FilterExceptions';
 import { AppController } from './controllers/app.controller';
 import { TodoController } from './controllers/todo.controller';
 import { UserController } from './controllers/user.controller';
@@ -27,7 +29,21 @@ import { UserTodoService } from './services/user.todo.service';
     }),
     SequelizeModule.forFeature([User, Todo])
   ],
-  controllers: [AppController, UserController, TodoController, UserTodoController],
-  providers: [AppService, UserService, TodoService, UserTodoService],
+  controllers: [
+    AppController, 
+    UserController, 
+    TodoController, 
+    UserTodoController
+  ],
+  providers: [
+    AppService, 
+    UserService, 
+    TodoService, 
+    UserTodoService,
+    {
+      provide: APP_FILTER,
+      useClass: FilterExceptions
+    },
+  ],
 })
 export class AppModule {}

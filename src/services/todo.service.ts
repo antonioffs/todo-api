@@ -15,6 +15,10 @@ export class TodoService{
     }
 
     async createTodo(body: Todo) {
-        this.todoModel.create(body);
+        try{
+            return this.todoModel.create(body);
+        }catch{
+            throw new Error("Error to create a To Do")
+        }
     }
 }

@@ -11,14 +11,22 @@ export class UserService{
     ){ }
 
     async getUser(username: string): Promise<User>{
-        return this.userModel.findOne({
-            where: {
-                username: username
-            }
-        })
+        try{
+            return this.userModel.findOne({
+                where: {
+                    username: username
+                }
+            })
+        }catch{
+            throw new Error()
+        }
     }
 
     async createUser(body: User) {
-        this.userModel.create(body);
+        try{
+            return this.userModel.create(body);
+        }catch{
+            throw new Error()
+        }
     }
 }
