@@ -1,9 +1,14 @@
+import { IsInt, IsNotEmpty, IsString } from "class-validator";
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { User } from "./user.model";
 
 @Table
 export class Todo extends Model<Todo>{
 
+    @IsNotEmpty({
+        message: "Title must not be empty"
+    })
+    @IsString()
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -17,6 +22,10 @@ export class Todo extends Model<Todo>{
     })
     done: boolean;
 
+    @IsNotEmpty({
+        message: "User not found"
+    })
+    @IsInt()
     @ForeignKey(() => User)
     @Column({
         allowNull: false,

@@ -6,7 +6,7 @@ import { Todo } from "./todo.model";
 export class User extends Model<User>{
 
     @IsNotEmpty({
-        message: "Name must be informed"
+        message: "Name must not be empty"
     })
     @IsString()
     @Column({
@@ -16,7 +16,7 @@ export class User extends Model<User>{
     name: string;
 
     @IsNotEmpty({
-        message: "Username must be informed"
+        message: "Username must not be empty"
     })
     @IsString()
     @Column({
