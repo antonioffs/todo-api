@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { Todo } from "src/models/todo.model";
 import { TodoService } from "src/services/todo.service";
 
@@ -10,10 +10,10 @@ export class TodoController{
 
     }
 
-    // @Get(':username')
-    // async getUser(@Param() params): Promise<Todo>{
-    //     return this.todoService.getUser(params.username)
-    // }
+    @Get()
+    async getAllTodo(): Promise<Todo[]>{
+        return this.todoService.getAllTodo()
+    }
 
     @Post()
     async createUser(@Body() body: Todo) {
