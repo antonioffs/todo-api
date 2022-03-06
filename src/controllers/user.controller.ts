@@ -2,7 +2,6 @@ import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { User } from "src/models/user.model";
 import { UserService } from "src/services/user.service";
 
-
 @Controller('user')
 export class UserController{
 

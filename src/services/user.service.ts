@@ -1,4 +1,4 @@
-import { Injectable, Param } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { User } from "src/models/user.model";
 
@@ -14,8 +14,7 @@ export class UserService{
         return this.userModel.findOne({
             where: {
                 username: username
-            },
-            raw: true,
+            }
         })
     }
 
