@@ -13,13 +13,9 @@ export class UserTodoService{
         private todoModel: typeof Todo,
     ){ }
 
-    // async getOneTodo(user_id: number, todo_id: number): Promise<Todo>{
-    //     return this.todoModel.findOne({
-    //         where: {
-    //             id: todo_id
-    //         }
-    //     })
-    // }
+    async userExists(user_id: number){
+        return this.userModel.findByPk(user_id)
+    }
 
     async getAllTodosOfUser(user_id: number): Promise<Todo[]>{
         return this.todoModel.findAll({
@@ -28,6 +24,38 @@ export class UserTodoService{
             }
         });
     }
-        
+     
+    async getOneTodoOfUser(user_id: number, todo_id: number): Promise<Todo>{
+        if(await this.userExists(user_id)){
+            return this.todoModel.findOne({
+                where: {
+                    id: todo_id,
+                    user_id: user_id                  
+                }
+            })
+        }else{
+            return
+        }
+    }
 
+    async updateTudoOfUser(user_id: number, todo: Todo){
+        if(await this.userExists(user_id)){
+            return this.todoModel.update(todo, {
+                where: {
+                    id: todo.id
+                }
+            })
+        }else{
+            return
+        }
+    }
+        
+    async deleteTodoOfUser(user_id: number, todo_id: number){
+        if(await this.userExists(user_id)){
+            const todo = await this.getOneTodoOfUser(user_id, todo_id)
+            todo.destroy()
+        }else{
+            return
+        }
+    }
 }
