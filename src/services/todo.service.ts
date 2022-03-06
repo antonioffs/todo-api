@@ -14,10 +14,6 @@ export class TodoService{
         return this.todoModel.findAll()
     }
 
-    async getOneTodo(todo_id: number): Promise<Todo>{
-        return this.todoModel.findByPk(todo_id)
-    }
-
     async createTodo(body: Todo) {
         this.todoModel.create(body);
     }
