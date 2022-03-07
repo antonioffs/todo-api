@@ -1,4 +1,4 @@
-import { HttpCode, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Todo } from "src/models/todo.model";
 import { User } from "src/models/user.model";
