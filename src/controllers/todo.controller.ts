@@ -14,10 +14,5 @@ export class TodoController{
     async getAllTodo(): Promise<Todo[]>{
         return this.todoService.getAllTodo()
     }
-
-    @Post()
-    async createUser(@Body() body: Todo) {
-        return this.todoService.createTodo(body);
-    }
-
+    
 }

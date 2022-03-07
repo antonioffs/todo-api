@@ -13,12 +13,4 @@ export class TodoService{
     async getAllTodo(): Promise<Todo[]>{
         return this.todoModel.findAll()
     }
-
-    async createTodo(body: Todo) {
-        try{
-            return this.todoModel.create(body);
-        }catch{
-            throw new Error("Error to create a To Do")
-        }
-    }
 }
