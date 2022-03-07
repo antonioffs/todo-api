@@ -1,3 +1,4 @@
+import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsNotEmpty, IsString } from "class-validator";
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { User } from "./user.model";
@@ -5,6 +6,10 @@ import { User } from "./user.model";
 @Table
 export class Todo extends Model<Todo>{
 
+    @ApiProperty({
+        example: "Wash the dishes", 
+        description: 'Title of To Do' 
+    })
     @IsNotEmpty({
         message: "Title must not be empty"
     })
@@ -15,6 +20,10 @@ export class Todo extends Model<Todo>{
     })
     title: string;
 
+    @ApiProperty({
+        example: false, 
+        description: 'Status of the To Do' 
+    })
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,
@@ -22,10 +31,10 @@ export class Todo extends Model<Todo>{
     })
     done: boolean;
 
-    @IsNotEmpty({
-        message: "User not found"
-    })
-    @IsInt()
+    // @ApiProperty({
+    //     example: 1, 
+    //     description: 'User owner of To Do' 
+    // })
     @ForeignKey(() => User)
     @Column({
         allowNull: false,
@@ -34,4 +43,16 @@ export class Todo extends Model<Todo>{
 
     @BelongsTo(() => User)
     user: User
+
+    // @ApiHideProperty()
+    // @ApiProperty({ example: 1, description: 'User ID, Auto increment',})
+    // id: number;
+
+    // @ApiHideProperty()
+    // @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Last updated date' })
+    // updatedAt: "2022-03-06T23:01:53.182Z";
+
+    // @ApiHideProperty()
+    // @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Created date' })
+    // createdAt: "2022-03-06T23:01:53.182Z";
 }

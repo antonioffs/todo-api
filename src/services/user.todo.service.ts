@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Todo } from "src/models/todo.model";
 import { User } from "src/models/user.model";
+import internal from "stream";
 
 @Injectable()
 export class UserTodoService{
@@ -34,19 +35,28 @@ export class UserTodoService{
                 }
             })
         }else{
-            return
+            throw new Error("User not Found")
         }
     }
 
-    async updateTudoOfUser(user_id: number, todo: Todo){
+    async createTodoOfUser(user_id: number, todo: Todo) {        
+        if(await this.userExists(user_id)){
+            todo['user_id']=user_id
+            return this.todoModel.create(todo)
+        }else {
+            throw new Error("User not Found")
+        }
+    }
+
+    async updateTudoOfUser(user_id: number, todo_id: number,  todo: Todo){
         if(await this.userExists(user_id)){
             return this.todoModel.update(todo, {
                 where: {
-                    id: todo.id
+                    id: todo_id
                 }
-            })
+            });
         }else{
-            return
+            throw new Error("User not Found")
         }
     }
         
@@ -55,7 +65,7 @@ export class UserTodoService{
             const todo = await this.getOneTodoOfUser(user_id, todo_id)
             todo.destroy()
         }else{
-            return
+            throw new Error("User not Found")
         }
     }
 }
