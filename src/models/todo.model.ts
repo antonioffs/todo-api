@@ -31,10 +31,10 @@ export class Todo extends Model<Todo>{
     })
     done: boolean;
 
-    @ApiProperty({
-        example: 1, 
-        description: 'User owner of To Do' 
-    })
+    // @ApiProperty({
+    //     example: 1, 
+    //     description: 'User owner of To Do' 
+    // })
     @ForeignKey(() => User)
     @Column({
         allowNull: false,
@@ -44,15 +44,15 @@ export class Todo extends Model<Todo>{
     @BelongsTo(() => User)
     user: User
 
-    @ApiHideProperty()
-    @ApiProperty({ example: 1, description: 'User ID, Auto increment',})
-    id: number;
+    // @ApiHideProperty()
+    // @ApiProperty({ example: 1, description: 'User ID, Auto increment',})
+    // id: number;
 
-    @ApiHideProperty()
-    @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Last updated date' })
-    updatedAt: "2022-03-06T23:01:53.182Z";
+    // @ApiHideProperty()
+    // @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Last updated date' })
+    // updatedAt: "2022-03-06T23:01:53.182Z";
 
-    @ApiHideProperty()
-    @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Created date' })
-    createdAt: "2022-03-06T23:01:53.182Z";
+    // @ApiHideProperty()
+    // @ApiProperty({ example: "2022-03-06T23:01:53.182Z", description: 'Created date' })
+    // createdAt: "2022-03-06T23:01:53.182Z";
 }
