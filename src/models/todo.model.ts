@@ -22,10 +22,6 @@ export class Todo extends Model<Todo>{
     })
     done: boolean;
 
-    @IsNotEmpty({
-        message: "User not found"
-    })
-    @IsInt()
     @ForeignKey(() => User)
     @Column({
         allowNull: false,
