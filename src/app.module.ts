@@ -21,9 +21,9 @@ import { UserTodoService } from './services/user.todo.service';
       dialect: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: process.env.USUARIO_BANCO_DADOS,
-      password: process.env.SENHA_BANCO_DADOS,
-      database: 'todo',
+      username: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.DB_USE_DATABASE,
       autoLoadModels: true,
       synchronize: true
     }),

@@ -21,9 +21,9 @@ services:
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_USER=${USUARIO_BANCO_DADOS}
-      - MYSQL_PASSWORD=${SENHA_BANCO_DADOS}
-      - MYSQL_DATABASE=todo
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${DB_USE_DATABASE}
     ports:
     - "3308:3306"
     volumes:
